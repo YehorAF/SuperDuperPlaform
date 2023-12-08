@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block csslinks %}
+    <link rel="stylesheet" href="{% static 'css/accounts/signup.css' %}">
+{% endblock %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div style="padding:0 10vw;">
+            <div class="announce">
+                <h1><strong>Already Signed Up!!😊😊😊</strong></h1>
+                <a href="{% url 'home' %}" class="btn btn-primary">Go to HomePage</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="container-fluid">
+            <div class="signup-box">
+              <div class="form-nav">
+                  <li class="signup-active"><a class="btn">Sign Up</a></li>
+              </div>
+              <div class="form">
+                  <form class="form-signup" method="POST" name="form">
+                      {% csrf_token %}
+                      <div class="field">
+                          {{ form.username.label_tag }}
+                {{ form.username }}
+                      </div>
+                      <div class="btn-animate">
+                          <input type="submit" class="btn-signup" style="color:white;" value="Sign Up">
+                      </div>
+                  </form>
+              </div>
+            </div>
+        </div>
+    {% endif %}
+    <script>
+        document.getElementById('id_username').setAttribute("type","email");
+    </script>
+{% endblock %}

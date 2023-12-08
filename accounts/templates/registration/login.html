@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block csslinks %}
+    <link rel="stylesheet" href="{% static 'css/accounts/login.css' %}">
+{% endblock %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <div style="padding:0 10vw;">
+            <div class="announce">
+                <h1><strong>Already Signed In!!😊😊😊</strong></h1>
+                <a href="{% url 'home' %}" class="btn btn-primary">Go to HomePage</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="container-fluid">
+            <div class="signin-box">
+            <div class="form-nav">
+                <li class="signin-active"><a class="btn">Login</a></li>
+            </div>
+            <div class="form">
+                <form class="form-signin" method="POST" name="form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="btn-animate">
+                        <input type="submit" class="btn-signin" style="color:white;" value="Sign In">
+                    </div>
+                </form>
+            </div>
+            <div class="forgot">
+                <a href="{% url 'password_reset' %}">Forgot your password?</a>
+            </div>
+            </div>
+        </div>
+    {% endif %}
+    <script>
+        document.getElementById('id_username').setAttribute("type","email");
+    </script>
+{% endblock %}

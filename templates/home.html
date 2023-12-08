@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block csslinks %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+{% endblock %}
+{% block content %}
+    <div id="createroom" class="container-fluid" style="background-color:aliceblue">
+        <div class="row">
+            <div class="col-sm-5">
+                <div id="link-generation">
+                    {% if user.is_authenticated %}
+                        <div id="message">
+                            <h1>Greetings!! Generate a link for videochat room by clicking below.</h1>
+                            <br>
+                            <p>Talk to your friends and share memories.</p>
+                        </div>
+                        <div id="link">
+                            <button id="create-room" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#linkmodal">Create ChatRoom</button>
+                            <input type="text" id="paste-link" placeholder="Paste link or roomcode">
+                            <a href='' id="join" class="btn btn-outline-primary">Join</a>
+
+                            <!-- Modal to show the link -->
+                            <div class="modal fade" id="linkmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="linkmodalLabel" style="font-size:1.5rem;"><strong> Here 's the link to your chatroom</strong></h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="font-size:2rem;">
+                                      <p>Copy the link and send it to the people you want to chat with!!😊😊</p>
+                                      <div style="background-color:#f1f3f4;">
+                                        <div class="input-group mb-3">
+                                            <input id="chatroomlink" disabled type="url" class="form-control" placeholder="ChatRoom Link" aria-label="ChatRoom-Link" value="" style="font-size:2rem;text-align:center;">
+                                            <div class="input-group-append">
+                                              <button id="copytoclipboard" type="button" class="btn"><i class="bi bi-clipboard" style="font-size: 2.5rem"></i></button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    {% else %}
+                        <div id="auth_message">
+                            <h1>Greetings!! Welcome to Waves.</h1>
+                            <br>
+                            <p>Login/SignUp below to create chatrooms and meet your friends.</p>
+                        </div>
+                        <div id="authentication">
+                            <a href="{% url 'accounts:login' %}" class="btn btn-primary user_auth">Login</a>
+                            <a href="{% url 'accounts:signup' %}" class="btn btn-primary user_auth">SignUp</a>
+                        </div>
+                    {% endif %}
+                            
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <img id="rightside-img" src="{% static 'image/videocall.png' %}" alt="VideoCall-Image">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block jslinks %}
+    <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

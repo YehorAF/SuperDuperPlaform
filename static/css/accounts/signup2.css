@@ -1,0 +1,129 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    gap: 2rem;
+
+    background: linear-gradient(180deg, rgba(143, 241, 254, 0.70) 0%, rgba(169, 254, 167, 0.60) 99.62%, rgba(255, 255, 255, 0.00) 100%);
+}
+
+h1{
+    margin-top: 2%;
+    margin-bottom: 0;
+
+    color: #000;
+
+    text-align: center;
+    font-family: Ink Free, sans-serif;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form{
+    width: 50rem;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding-bottom: 2%;
+
+    border-radius: 1.875rem;
+    border: 3px solid #F0CF1E;
+    background: #F3F3F3;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.form > h2{
+    color: #000;
+    margin-top: 2%;
+    margin-bottom: 0;
+
+    text-align: center;
+    font-family: Lato, sans-serif;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form-signin{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 90%;
+    gap: 4%;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.field > label{
+    color: #000;
+    text-align: start;
+    margin-left: 1%;
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.field > input{
+    width: 100%;
+    height: 60%;
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 1.5625rem;
+    background-color: #E3E3E3;
+
+    color: #000;
+
+    text-align: start;
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.errors{
+    height: 5%;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 17%;
+    gap: 12%;
+}
+
+.buttons > input{
+    width: 45%;
+    height: 90%;
+
+    border-radius: 1.5625rem;
+    border: 1px solid #70ED5C;
+    background: #7593FF;
+
+    color: #000;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Syne, sans-serif;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
