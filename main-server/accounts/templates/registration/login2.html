@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+{% block csslinks %}
+    <link rel="stylesheet" href="{% static 'css/accounts/login2.css' %}">
+{% endblock %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Super Platform</h1>
+    <div class="form">
+        <h2>Вхід</h2>
+        <form class="form-signin" method="POST" name="form">
+            {% csrf_token %}
+
+            <div class="field">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class="field">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+            <div class="errors">
+                {{ form.errors }}
+            </div>
+
+            <div class="buttons">
+                <input type="submit" class="btn-login" style="color:white;" value="Увійти">
+                <input type="button" class="btn-signup" style="color:white;" value="Зареєструватися">
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<script>
+    document.getElementById('id_username').setAttribute("type","email");
+
+    const signUpBtn = document.getElementsByClassName('btn-signup')[0];
+    signUpBtn.addEventListener('click', function () {
+        window.location.href = '/signup';
+    });
+
+</script>
+</html>

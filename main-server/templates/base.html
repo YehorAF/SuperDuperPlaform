@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    
+    <!-- Bootstrap CSS Bundle -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Other CSS links -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block csslinks %}{% endblock %}
+</head>
+<body>
+    <!-- Nav Bar -->
+    <nav class="navigation">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="logo col-sm-3">
+                    <a href="#">Waves</a>
+                </div>
+                <div id="mainListDiv" class="main_list col-sm-9">
+                    <ul class="navigationlinks">
+                        <li style="color:white">
+                            <a id="hour"></a>
+                            <a>:</a>
+                            <a id="mins"></a>
+                            <a id="meridian"></a>
+                            <a>|</a>
+                            <a id="date"></a>
+                            <a id="month"></a>
+                            <a id="year"></a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li><a>Hi! {{user.first_name}}</a></li>
+                            <li><a href="{% url 'accounts:logout' %}">LogOut</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <span class="navigationTrigger">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="main">
+        <!-- Content -->
+        {% block content %}{% endblock %}
+    </section>
+    
+    <footer>
+        <p>&copy;Made by Saswat Das</p>
+    </footer>
+
+</body>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Jquery needed -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding a light blue background -->
+<script>
+    //Update clock every minute
+    var hour = document.getElementById('hour');
+    var mins = document.getElementById('mins');
+    var meridian = document.getElementById('meridian');
+    var date = document.getElementById('date');
+    var month = document.getElementById('month');
+    var year = document.getElementById('year');
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    
+    function clock()
+    {
+        var d = new Date();
+        var hour_ = d.getHours();
+        var mins_ = d.getMinutes();
+        var date_ = d.getDate();
+        var month_ = d.getMonth();
+        var year_ = d.getFullYear();
+
+        if(hour_ >= 12){
+            meridian.innerHTML = 'PM';
+        }
+        else{
+            meridian.innerHTML = 'AM';
+        }
+        if(hour_ === 0){hour_ = 12;}
+        if(hour_ > 12){hour_-=12;}
+
+        if(hour_>=1 && hour_<=9)
+        {
+            hour_ = '0'+hour_;
+        }
+        if(mins_>=0 && mins_<=9)
+        {
+            mins_ = '0'+mins_;
+        }
+        
+        //Initialise
+        hour.innerHTML = hour_;
+        mins.innerHTML = mins_;
+        date.innerHTML = date_;
+        month.innerHTML = months[month_];
+        year.innerHTML = year_;
+    }
+    clock();
+    setInterval(clock,1000);
+
+    //trigger function
+    $('.navigationTrigger').click(function () {
+        $(this).toggleClass('active');
+        //console.log("Clicked menu");
+        $("#mainListDiv").toggleClass("show_list");
+        $("#mainListDiv").fadeIn();
+    
+    });
+
+    // func used to shrink nav bar removing paddings and adding a light blue background 
+    $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+            $('.navigation').addClass('affix');
+            //console.log("OK");
+        } else {
+            $('.navigation').removeClass('affix');
+        }
+    });
+
+    
+    
+</script>
+<!-- Other JS links -->
+{% block jslinks %}{% endblock %}
+
+</html>

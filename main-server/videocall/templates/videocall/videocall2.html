@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Platform</title>
+
+    <link rel="stylesheet" href="{% static 'css/videocall/videocall2.css' %}">
+{#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">#}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <div class="main">
+        {{ view.kwargs.room_id|json_script:"room-id" }}
+        {{ request.user.username|json_script:"username" }}
+
+        <!-- Ready to enter room -->
+        <div id="ready-room" class="container-fluid">
+            <div class="preview-video row">
+                <div class="videosettings col-sm-12 col-md-7">
+                    <video id="localVideo" autoplay playsinline></video>
+                    <div id="settings">
+                        <div>
+                            <button class="audio-toggle" class="btn"><i class="bi bi-mic-fill"></i></button>
+                            <button class="video-toggle" class="btn"><i class="bi bi-camera-video-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-menu">
+                    <p>Готові приєднатися?</p>
+                    <button id="Join-Room" disabled class="btn btn-light">Увійти</button>
+                    <a href="/" id="Leave-back" class="btn btn-light">Вийти</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Room ready -->
+        <div id="room" style="display:none;">
+            <div class="videotrack-local">
+                    <video id="localVideo-joined" autoplay playsinline></video>
+                    <!-- <span class="aboutuser">
+                        <p>Name</p>
+                    <span> -->
+                </div>
+            <div class="container-main">
+                <div class="videos grid-container" id="videos">
+
+                </div>
+                <div id="controls">
+                    <button class="audio-toggle" class="btn"><i class="bi bi-mic-fill"></i></button>
+                    <button class="video-toggle" class="btn"><i class="bi bi-camera-video-fill"></i></button>
+                    <button id="leave-room" class="btn" style="background-color:red;margin-bottom:0.7rem;"><i class="bi bi-x-circle-fill"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Return to room -->
+        <div id="return-room" style="display:none;">
+            <div class="return-to-room-options">
+                <h1 style="font-size:3rem;">Return to the ChatRoom!!✔ <br><br> Your friends may be waiting for you!!!👨‍👦‍👦😊</h1>
+                <a href="{% url 'videocall:room' view.kwargs.room_id %}"><button id="returnroom" class="btn btn-primary">Return Room</button></a>
+                <a href="{% url 'home' %}"><button id="home" class="btn btn-dark">Return HomePage</button></a>
+            </div>
+        </div>
+
+        <!-- Show error message if room is not valid -->
+        <div id="roomnotfound" style="padding:20vh 10vw;display:none;">
+            <div class="announce">
+                <h1>
+                    Check your ChatRoom Code!!😕😕
+                </h1>
+                <p>
+                    Make sure you entered the correct meeting code in the URL.😊😊
+                </p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Go to HomePage</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+{% block jslinks %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/videocall/videocall.js' %}"></script>
+{% endblock %}
