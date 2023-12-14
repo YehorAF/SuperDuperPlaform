@@ -1,15 +1,15 @@
 function startChat(
-    serverUrl, 
-    name, 
-    userId, 
-    chatId, 
-    setInMsgBox, 
-    delFromMsgBox,
-    editInMsgBox
+    serverUrl, // url для під'єднання до сокету
+    name, // ім'я користувача
+    userId, // id користувача
+    chatId, // id чату
+    setInMsgBox, // функція для додавання повідомлень 
+    delFromMsgBox, // функція для видалення повідомлень
+    editInMsgBox // функція для редагування повідолмень
 ) {
     let socket = io(serverUrl, {autoConnect: false})
     const inputData = document.querySelector("#input-data")
-    const msgBox = document.querySelector("#message-box")
+    // const msgBox = document.querySelector("#message-box")
     const editBox = document.querySelector("#edit-box")
     const sendMsgBtn = document.querySelector("#send-msg-btn")
     const editMsgBtn = document.querySelector("#edit-msg-btn")
@@ -55,7 +55,7 @@ function startChat(
 
     const editMsg = () => {
         const msgId = editBox.value
-        const text = msgBox.value
+        const text = inputData.value
         try {
             socket.emit("edit_msg", {
                 "msg_id": msgId,

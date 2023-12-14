@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         const header = document.createElement("header")
         header.className = "msg-header"
-        header.textContent = `${name}\t${data}-${time}`
+        header.textContent = `${name}\t${date}-${time}`
 
         const content = document.createElement("span")
         content.className = "msg-content"
@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
         msgBox.appendChild(msg)
     }
 
-    const editFromMsgBox = (data) => {
+    const editInMsgBox = (data) => {
         const sid = data.sid
         const chatId = data["chat_id"]
         const msgId = data["msg_id"]
@@ -45,7 +45,7 @@ window.addEventListener("DOMContentLoaded", () => {
         document.querySelector(`#${chatId}-${msgId} span.msg-content`).remove()
     }
 
-    const url = `${window.location.origin}/conference_socks/conf`
+    const url = `${window.location.origin}/conference_socks/chat`
 
-    // startChat(url)
+    startChat(url, "", "", "", setInMsgBox, delFromMsgBox, editInMsgBox)
 })
