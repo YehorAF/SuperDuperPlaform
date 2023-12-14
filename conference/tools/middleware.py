@@ -17,25 +17,25 @@ async def auth_middleware(
         database: Database = request.app["database"]
         user = request.headers.get("Conf-User-Id")
         session = request.headers.get("Conf-User-Session")
-        # якщо це для створення юзера
-        # 1) перевірити наявність
-        # 2) відправити запит на голвний сервер
-        # 3) перевірити
-        if not user or not session:
-            return web.json_response({
-                "status": "fail", 
-                "description": "user doesn't authorized"
-            }, status=403)
-        _, count = await database.users.get({
-            "_id": ObjectId(user), 
-            "session": "session", 
-            "status": {"$not": "blocked"}
-        }, {"_id": 1})
-        if count < 1:
-            return web.json_response({
-                "status": "fail", 
-                "description": "user doesn't authorized"
-            }, status=403)
+        api_key = request.headers.get("Conf-Api-Key")
+        # it is bad choice to write code
+        # i should to replace it on better (use functions for this task)
+        if not api_key or api_key not in request.app["api_keys"]:
+            if not user or not session:
+                return web.json_response({
+                    "status": "fail", 
+                    "description": "user doesn't authorized"
+                }, status=403)
+            _, count = await database.users.get({
+                "_id": ObjectId(user), 
+                "session": "session", 
+                "status": {"$not": "blocked"}
+            }, {"_id": 1})
+            if count < 1:
+                return web.json_response({
+                    "status": "fail", 
+                    "description": "user doesn't authorized"
+                }, status=403)
         return await handler(request)
     except errors.InvalidId as ex_:
         logging.warning(ex_)
