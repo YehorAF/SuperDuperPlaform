@@ -9,6 +9,7 @@ from tools.exceptions import UniqueDataError, MissingUserError, DBResultError
 _database: Database = None
 
 
+@web.middleware
 async def auth_middleware(
     request: web.Request, 
     handler: Callable[[web.Request], Awaitable[web.Response]]
@@ -45,6 +46,7 @@ async def auth_middleware(
         }, status=400)
 
 
+@web.middleware
 async def exceptions_handler_middleware(
     request: web.Request, 
     handler: Callable[[web.Request], Awaitable[web.Response]]
