@@ -29,8 +29,10 @@
                 </div>
                 <div class="side-menu">
                     <p>Готові приєднатися?</p>
-                    <button id="Join-Room" disabled class="btn btn-light">Увійти</button>
-                    <a href="/" id="Leave-back" class="btn btn-light">Вийти</a>
+                    <div class="sidem-buttons">
+                        <button id="Join-Room" disabled class="btn btn-light">Увійти</button>
+                        <a href="/" id="Leave-back" class="btn btn-light">Вийти</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +60,6 @@
         <!-- Return to room -->
         <div id="return-room" style="display:none;">
             <div class="return-to-room-options">
-                <h1 style="font-size:3rem;">Return to the ChatRoom!!✔ <br><br> Your friends may be waiting for you!!!👨‍👦‍👦😊</h1>
                 <a href="{% url 'videocall:room' view.kwargs.room_id %}"><button id="returnroom" class="btn btn-primary">Return Room</button></a>
                 <a href="{% url 'home' %}"><button id="home" class="btn btn-dark">Return HomePage</button></a>
             </div>

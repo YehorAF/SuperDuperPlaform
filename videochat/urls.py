@@ -27,7 +27,7 @@ urlpatterns = [
     path('password_reset_done/',PasswordResetDoneView.as_view(),name = 'password_reset_done'),
     path('password_reset_confirm/<uidb64>/<token>/',PasswordResetConfirmView.as_view(success_url = reverse_lazy('accounts:login')),name = 'password_reset_confirm'),
     # path('password_reset_complete/',PasswordResetCompleteView.as_view(),name = 'password_reset_complete')
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('createroomlink/',views.CreateRoomLink,name='createroomlink'),
     path('checkroom/<str:room_id>',views.CheckRoom,name = 'checkroom'),
     path('',views.HomePage,name = 'home'),

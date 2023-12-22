@@ -56,6 +56,65 @@ html, body{
     border: none;
 }
 
+.side-menu > p{
+    color: #ffffff;
+    text-align: center;
+    font-family: Actor, sans-serif;
+    font-size: 2rem;
+    margin: 1rem;
+    margin-top: 30%;
+    margin-bottom: 10%;
+}
+
+.sidem-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    height: 30vh;
+}
+
+.sidem-buttons > button{
+        border-radius: 1.25rem;
+    border: 2px solid #FFF;
+    background: #379E2E;
+
+    width: 60%;
+    height: 17%;
+    /*margin-bottom: 5%;*/
+    text-align: center;
+    text-decoration: none;
+    padding-top: 1%;
+    color: #fff;
+    font-family: Actor, sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.sidem-buttons > a{
+    border-radius: 1.25rem;
+    border: 2px solid #FFF;
+    background: #D13B3B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 15%;
+    margin-bottom: 5%;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 1%;
+    color: #fff;
+    font-family: Actor, sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 /* room CSS */
 
 #room{
