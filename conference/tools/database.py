@@ -28,7 +28,7 @@ class Collection:
 
     async def get(self, query: dict, *args, **kwargs
                   ) -> typing.Tuple[AgnosticCursor, int]:
-        return await (self._collection.find(query, *args, **kwargs), 
+        return (self._collection.find(query, *args, **kwargs), 
                       await self._collection.count_documents(query))
     
 

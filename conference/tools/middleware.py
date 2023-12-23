@@ -21,7 +21,7 @@ async def auth_middleware(
         api_key = request.headers.get("Conf-Api-Key")
         # it is bad choice to write code
         # i should to replace it on better (use functions for this task)
-        if not api_key or api_key not in request.app["api_keys"]:
+        if not api_key or api_key not in request.app["app_keys"]:
             if not user or not session:
                 return web.json_response({
                     "status": "fail", 
@@ -29,7 +29,7 @@ async def auth_middleware(
                 }, status=403)
             _, count = await database.users.get({
                 "_id": ObjectId(user), 
-                "session": "session", 
+                "session": session, 
                 "status": {"$not": "blocked"}
             }, {"_id": 1})
             if count < 1:
